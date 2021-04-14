@@ -1,0 +1,20 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.projects {
+  @apply py-3;
+  @apply px-0;
+}
+
+.roboto {
+  font-family: "Roboto", sans-serif;
+}
+
+.roboto-mono {
+  font-family: "Roboto Mono", monospace;
+}
+
+.roboto-slab {
+  font-family: 'Roboto Slab', serif;
+}

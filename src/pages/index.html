@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="author" content="Ahmed Şeref GÜNEYSU" />
 
-    <link href="/css/app.css" rel="stylesheet" />
+    <link href="../../styles/app.css" rel="stylesheet" />
 
     <meta name="Description" content="Amazon Web Service, .NET, ASP.NET MVC Related posts, articles and ideas " />
     <title>/home/asguneysu | Ahmed Şeref GÜNEYSU</title>
-    <!-- <meta name="generator" content="TODO" /> -->
+    <meta name="generator" content="{{ HUGO_VERSION }}" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -21,10 +21,11 @@
 
   <body>
     <header class="w-full">
-      <nav class="relative z-20 bg-white pb-6 px-6 md:pt-0 border-t border-b">
-        <div class="container mx-auto max-w-4xl justify-between items-center text-sm flex">
+
+      <nav class="bg-white md:pt-0 pb-6 px-6 relative z-20 border-t border-b">
+        <div class="container mx-auto max-w-4xl justify-between items-center text-sm  md:flex md:text-md md:justify-start">
           <div class="w-full md:w-1/4 text-center md:text-left py-4 flex flex-wrap justify-center items-stretch md:justify-start md:items-start">
-            <a aria-current="page" class="brand p-4" href="/">
+            <a aria-current="page" class="brand" href="/">
               <img src="https://avatars.githubusercontent.com/u/949232?v=4&s=50" height="50" width="50" alt="Avatar" />
             </a>
           </div>
@@ -35,10 +36,8 @@
               name="search"
               class="search focus:outline-none focus:border-gray-800 roboto-mono font-light roboto text-xl align-middle text-gray-600 bg-transparent border-b-2 px-4 py-2"
             />
-            <div class="hidden">
-              <a href="#" class="font-light roboto mx-1 px-4 py-3 text-xl align-middle text-gray-600 hover:bg-gray-100 rounded-lg ">articles</a>
-              <a href="#" class="font-light roboto mx-1 px-4 py-3 text-xl align-middle text-gray-600 hover:bg-gray-100 rounded-lg">about</a>
-            </div>
+            <a href="#" class="font-light roboto mx-1 px-4 py-3 text-xl align-middle text-gray-600 hover:bg-gray-100 rounded-lg">articles</a>
+            <a href="#" class="font-light roboto mx-1 px-4 py-3 text-xl align-middle text-gray-600 hover:bg-gray-100 rounded-lg">about</a>
           </div>
         </div>
       </nav>
@@ -54,7 +53,7 @@
           </div>
         </section>
       </div>
-      <section class="max-w-4xl mx-auto px-3">
+      <section class="max-w-4xl mx-auto">
         <!-- articles -->
         <h2 class="section-title roboto-slab font-medium flex justify-between align-bottom text-3xl border-b-4 text-gray-700 border-gray-700 py-2 my-2">
           latest articles
@@ -90,38 +89,38 @@
         </div>
       </section>
 
-      <section class="max-w-4xl mx-auto px-3">
+      <section class="max-w-4xl mx-auto">
         <!-- projects -->
         <h2 class="section-title roboto-slab font-medium flex justify-between align-bottom text-3xl border-b-4 text-gray-700 border-gray-700 py-2 my-2">
           projects
           <a class="section-button font-mono font-extralight rounded-lg bg-gray-100 hover:bg-gray-200 leading-4 text-lg py-3 px-2" href="#">all</a>
         </h2>
-        <div class="projects grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="project hover:bg-gray-100 px-3 py-4">
+        <div class="projects">
+          <div class="project hover:bg-gray-100 px-3 py-2">
             <a href="#" target="_blank" rel="noreferrer">
               <h3 class="roboto-slab font-medium text-xl text-gray-700">TakeNote</h3>
               <div class="description text-lg">A free, open source notes app for the web.</div>
             </a>
           </div>
-          <div class="project hover:bg-gray-100 px-3 py-4">
+          <div class="project hover:bg-gray-100 px-3 py-2">
             <a href="https://taniarascia.github.io/chip8/" target="_blank" rel="noreferrer">
               <h3 class="roboto-slab font-medium text-xl text-gray-700">Chip8.js</h3>
               <div class="description text-lg">A Chip-8 emulator written in JavaScript.</div>
             </a>
           </div>
-          <div class="project hover:bg-gray-100 px-3 py-4">
+          <div class="project hover:bg-gray-100 px-3 py-2">
             <a href="https://taniarascia.github.io/new-moon/" target="_blank" rel="noreferrer">
               <h3 class="roboto-slab font-medium text-xl text-gray-700">New Moon</h3>
               <div class="description text-lg">The optimized dark theme for web development.</div>
             </a>
           </div>
-          <div class="project hover:bg-gray-100 px-3 py-4">
+          <div class="project hover:bg-gray-100 px-3 py-2">
             <a href="https://github.com/taniarascia/mvc/" target="_blank" rel="noreferrer">
               <h3 class="roboto-slab font-medium text-xl text-gray-700">MVC.js</h3>
               <div class="description text-lg">A simple Todo MVC application in JavaScript.</div>
             </a>
           </div>
-          <div class="project hover:bg-gray-100 px-3 py-4">
+          <div class="project hover:bg-gray-100 px-3 py-2">
             <a href="https://laconia.dev" target="_blank" rel="noreferrer">
               <h3 class="roboto-slab font-medium text-xl text-gray-700">Laconia</h3>
               <div class="description text-lg">A modern PHP Model View Controller framework.</div>
@@ -131,16 +130,16 @@
       </section>
     </main>
 
-    <footer class="w-full border-t mx-auto max-w-4xl py-6 mt-4 mb-8 text-xs md:text-lg">
+    <footer class="w-full border-t mx-auto max-w-4xl text-lg py-6 mt-4 mb-8">
       <div class="container text-center mx-auto">
         <!-- footer -->
         <nav class="container footer-links">
           <!-- footer menu items -->
-          <a href="https://bulten.guneysu.xyz/" target="_blank" rel="noopener noreferrer" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg hidden sm:inline-flex">newsletter</a>
-          <a href="/index.xml" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">rss</a>
-          <a href="#" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">stackoverflow</a>
-          <a href="#" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">linkedin</a>
-          <a href="#" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">github</a>
+          <a href="https://bulten.guneysu.xyz/" target="_blank" rel="noopener noreferrer" class="text-lg px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">newsletter</a>
+          <a href="/index.xml" class="text-lg px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">rss</a>
+          <a href="#" class="text-lg px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">stackoverflow</a>
+          <a href="#" class="text-lg px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">linkedin</a>
+          <a href="#" class="text-lg px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">github</a>
         </nav>
       </div>
 

@@ -1,14 +1,14 @@
-TAILWIND := npx tailwindcss-cli build ./src/index.css -o ./static/css/app.css
+NPM := npm run
 
-default: build
+default: develop
 
-build:		## Builds
-	$(TAILWIND)
+develop:		## Development server
+	$(NPM) dev
 
-dist:		## Production build
-	NODE_ENV=production $(TAILWIND)
+publish:		## Publish
+	$(NPM) publish
 	
-.PHONY: default build dist
+.PHONY: default develop publish
 
 # ====================================================================================
 # Help

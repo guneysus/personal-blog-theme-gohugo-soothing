@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "TAILWIND_MODE=watch NODE_ENV=development npx postcss src/index.css -o ./static/css/app.css -w",
     "build:dev": "TAILWIND_MODE=build NODE_ENV=development npx postcss src/index.css -o ./static/css/app.css",    
-    "build:prod": "TAILWIND_MODE=build NODE_ENV=production npx postcss src/index.css -o ./static/css/app.css"
+    "publish": "TAILWIND_MODE=build NODE_ENV=production npx postcss src/index.css -o ./static/css/app.css"
   },
   "dependencies": {
   }

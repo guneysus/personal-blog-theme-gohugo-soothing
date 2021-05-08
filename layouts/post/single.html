@@ -2,23 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="language" content="Turkish"> <!-- TODO -->
+    <meta http-equiv="content-language" content="tr"> <!-- TODO -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="author" content="Ahmed Şeref GÜNEYSU" />
+    <meta name="Description" content="Amazon Web Service, .NET, ASP.NET MVC Related posts, articles and ideas " /> <!-- TODO -->
+    {{ hugo.Generator }}
+    <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.png"> <!-- TODO TEST -->
 
     <base href="{{ .Site.BaseURL }}" />
     
-    <link href="{{ .Site.BaseURL }}/css/app.css" rel="stylesheet" />
-
-    <meta name="Description" content="Amazon Web Service, .NET, ASP.NET MVC Related posts, articles and ideas " />
-    <title>/home/asguneysu | Ahmed Şeref GÜNEYSU</title>
-    <!-- <meta name="generator" content="TODO" /> -->
+    <title>{{ .Title }} | Ahmed Şeref GÜNEYSU</title> <!-- TODO -->
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+    
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;1,400&family=Roboto+Slab:wght@300;400;500&family=Roboto:wght@100;300;400;500&display=swap"
       rel="stylesheet"
     />
+    <link href="{{ .Site.BaseURL }}/css/app.css" rel="stylesheet" />
+
   </head>
 
   <body>
@@ -48,8 +52,19 @@
 
     <main class="w-full">
 
-      <section class="prose prose-xl max-w-4xl mx-auto px-3">
-        {{ .Content }}
+      <section class="prose prose-lg max-w-4xl mx-auto px-3 mt-12">
+        <h1 class="article-title mb-0">
+          {{ .Title }}
+        </h1>
+
+        <div class="article-publish-date">
+          <time>{{ .Date.Format "2006, January 02" }}</time><br>
+        </div>
+
+        <div class="content">
+          {{ .Content }}
+        </div>
+
       </section>
 
     </main>

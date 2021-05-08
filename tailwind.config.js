@@ -5,10 +5,26 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
-  },
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            code: {
+              color: '#333',
+              fontWeight: 600,
+              '&::before, &::after': {
+                color: '#ccc',
+              }
+            },
+          },
+        },
+      }
+    },
+  }, 
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography')
+  ]
 }

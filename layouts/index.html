@@ -22,6 +22,7 @@
   </head>
 
   <body>
+
     <header class="w-full">
       <nav class="relative z-20 bg-white pb-6 px-6 md:pt-0 border-t border-b">
         <div class="container mx-auto max-w-4xl justify-between items-center text-sm flex">
@@ -56,8 +57,9 @@
           </div>
         </section>
       </div>
+
+      <!-- articles -->
       <section class="max-w-4xl mx-auto px-3">
-        <!-- articles -->
         <h2 class="section-title roboto-slab font-medium flex justify-between align-bottom text-3xl border-b-4 text-gray-700 border-gray-700 py-2 my-2">
           latest articles
           <a class="section-button font-mono font-extralight rounded-lg bg-gray-100 hover:bg-gray-200 leading-4 text-lg py-3 px-2" href="/post/">all</a>
@@ -91,46 +93,90 @@
           </div>
         </div>
       </section>
+    <!-- articles -->
 
+      <!-- series -->
       <section class="max-w-4xl mx-auto px-3">
-        <!-- projects -->
+        <h2 class="section-title roboto-slab font-medium flex justify-between align-bottom text-3xl border-b-4 text-gray-700 border-gray-700 py-2 my-2">
+          series
+          <a class="section-button font-mono font-extralight rounded-lg bg-gray-100 hover:bg-gray-200 leading-4 text-lg py-3 px-2" href="/categories/">all</a>
+        </h2>
+        <div class="series">
+          <div class="episode">
+            <a href="#" class="flex items-center hover:bg-gray-100 text-lg px-3 py-3 my-1">
+              <div class="post-row flex items-stretch">
+                <h3 class="roboto text-gray-700">C# Functional Programming</h3>
+              </div>
+            </a>
+          </div>
+
+          <div class="episode">
+            <a href="#" class="flex hover:bg-gray-100 text-lg px-3 py-3 my-1">
+              <div class="post-row flex justify-around">
+                <h3 class="roboto text-gray-700">#2 Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h3>
+              </div>
+            </a>
+          </div>
+
+          <div class="episode">
+            <a href="#" class="flex items-center hover:bg-gray-100 text-lg px-3 py-3 my-1">
+              <div class="post-row flex items-stretch">
+                <h3 class="roboto text-gray-700">#3 Delectus ex facere magnam earum sunt neque odit nemo vitae</h3>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- series -->
+
+      <!-- projects -->
+      <section class="max-w-4xl mx-auto px-3">
         <h2 class="section-title roboto-slab font-medium flex justify-between align-bottom text-3xl border-b-4 text-gray-700 border-gray-700 py-2 my-2">
           projects
           <a class="section-button font-mono font-extralight rounded-lg bg-gray-100 hover:bg-gray-200 leading-4 text-lg py-3 px-2" href="#">all</a>
         </h2>
         <div class="projects grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
           <div class="project hover:bg-gray-100 px-3 py-4">
             <a href="https://guneysus.github.io/pake/" target="_blank" rel="noreferrer">
               <h3 class="roboto-slab font-medium text-xl text-gray-700">pake</h3>
-              <div class="description text-lg">GNU Make like simple build/automation tool implemented with Powershell</div>
+              <div class="description text-lg font-light">GNU Make like simple build/automation tool implemented with Powershell</div>
             </a>
           </div>
+
           <div class="project hover:bg-gray-100 px-3 py-4">
             <a href="https://guneysus.github.io/ndig/" target="_blank" rel="noreferrer">
               <h3 class="roboto-slab font-medium text-xl text-gray-700">ndig</h3>
-              <div class="description text-lg">dig like simple CLI DNS Lookup tool, implemented with .NET Core</div>
+              <div class="description text-lg font-light">dig like simple CLI DNS Lookup tool, implemented with .NET Core</div>
             </a>
           </div>
+
           <div class="project hover:bg-gray-100 px-3 py-4">
             <a href="https://guneysus.github.io/whatismybrowser/" target="_blank" rel="noreferrer">
               <h3 class="roboto-slab font-medium text-xl text-gray-700">What is my/your browser?</h3>
-              <div class="description text-lg">a simple whatsmybrowser.org clone but on the client side.</div>
+              <div class="description text-lg font-light">a simple whatsmybrowser.org clone but on the client side.</div>
             </a>
           </div>
+
           <div class="project hover:bg-gray-100 px-3 py-4">
             <a href="https://guneysus.github.io/predicate-builder/" target="_blank" rel="noreferrer">
               <h3 class="roboto-slab font-medium text-xl text-gray-700">Predicate Builder</h3>
-              <div class="description text-lg">Simple parser to converting strings to Predicates that can be used by any LINQ providers like Entity Framework.</div>
+              <div class="description text-lg font-light">Simple parser to converting strings to Predicates that can be used by any LINQ providers like Entity Framework.</div>
             </a>
           </div>
+
           <div class="project hover:bg-gray-100 px-3 py-4">
             <a href="https://guneysus.github.io/Devup/" target="_blank" rel="noreferrer">
               <h3 class="roboto-slab font-medium text-xl text-gray-700">Devup</h3>
-              <div class="description text-lg">YAML based, docker-compose like tools, helping to start development environments</div>
+              <div class="description text-lg font-light">YAML based, docker-compose like tools, helping to start development environments</div>
             </a>
           </div>
         </div>
       </section>
+      <!-- projects -->
+
+
+
     </main>
 
     <footer class="w-full border-t mx-auto max-w-4xl py-6 mt-4 mb-8 text-xs md:text-lg">

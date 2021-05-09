@@ -1,0 +1,16 @@
+<main>
+    <h2 >{{ i18n "Series" }} - Series</h2> <!-- TODO -->
+    {{ if not (eq (len $.Site.Taxonomies.series) 0) }}
+    <ul>
+        {{ range $key, $taxonomy := $.Site.Taxonomies.series }}
+            <li>
+            <a 
+            href="{{ .Page.Permalink }}" 
+            aria-label="Go to {{ .Page.Title }}">
+            {{ .Page.Title }} ({{.Count}})
+            </a>
+            </li>
+        {{ end }}
+    </ul>
+    {{ end }}
+</main>

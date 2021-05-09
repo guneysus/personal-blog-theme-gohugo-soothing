@@ -1,0 +1,14 @@
+<h1>{{ .Title }} </h1>
+{{ range (where .Data.Pages "Type" "post").GroupByDate "2006" -}}
+    <article>
+        <h2>{{ .Key }}</h2>
+        <ul class="list pl0">
+            {{ range .Pages -}}
+            <li>
+            {{ .Render "list-item" }}
+            </li>
+            {{ end }}
+        </ul>
+    </article>
+{{ end }}
+

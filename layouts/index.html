@@ -58,51 +58,31 @@
         </section>
       </div>
 
-      <!-- articles -->
-      <section class="max-w-4xl mx-auto px-3">
-        <h2 class="section-title roboto-slab font-medium flex justify-between align-bottom text-3xl border-b-4 text-gray-700 border-gray-700 py-2 my-2">
-          latest articles
-          <a class="section-button font-mono font-extralight rounded-lg bg-gray-100 hover:bg-gray-200 leading-4 text-lg py-3 px-2" href="/post/">all</a>
-        </h2>
-        <div class="posts">
-          <div class="post">
-            <a href="/post/sample-post/" class="flex items-center hover:bg-gray-100 text-lg px-3 py-3 my-1">
-              <div class="post-row flex items-stretch">
-                <time class="font-mono font-extralight roboto-mono text-gray-500 pr-8">Apr 01</time>
-                <h3 class="roboto text-gray-700">#1 Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-              </div>
-            </a>
-          </div>
-
-          <div class="post ">
-            <a href="/post/sample-post/" class="flex hover:bg-gray-100 text-lg px-3 py-3 my-1">
-              <div class="post-row flex justify-around">
-                <time class="font-mono font-extralight roboto-mono text-gray-500 pr-8">Apr 01</time>
-                <h3 class="roboto text-gray-700">#2 Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h3>
-              </div>
-            </a>
-          </div>
-
-          <div class="post">
-            <a href="/post/sample-post/" class="flex items-center hover:bg-gray-100 text-lg px-3 py-3 my-1">
-              <div class="post-row flex items-stretch">
-                <time class="font-mono font-extralight roboto-mono text-gray-500 pr-8">Apr 01</time>
-                <h3 class="roboto text-gray-700">#3 Delectus ex facere magnam earum sunt neque odit nemo vitae</h3>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-      <!-- articles -->
-
       <!-- series -->
       <section class="max-w-4xl mx-auto px-3">
         <h2 class="section-title roboto-slab font-medium flex justify-between align-bottom text-3xl border-b-4 text-gray-700 border-gray-700 py-2 my-2">
           series
-          <a class="section-button font-mono font-extralight rounded-lg bg-gray-100 hover:bg-gray-200 leading-4 text-lg py-3 px-2" href="/categories/">all</a>
+          <a class="section-button font-mono font-extralight rounded-lg bg-gray-100 hover:bg-gray-200 leading-4 text-lg py-3 px-2" href="/series/">all</a>
         </h2>
         <div class="series">
-          <div class="episode">
+
+          {{ range $key, $taxonomy := $.Site.Taxonomies.series }}
+              {{ $currentTagCount := len $taxonomy.Pages }}
+              {{ $count := len $taxonomy.Pages }}
+              
+              <div class="episode">
+                <a href="{{ .Page.Permalink }}" 
+                class="flex items-center hover:bg-gray-100 text-lg px-3 py-3 my-1"
+                aria-label="Go to {{ $key }}">
+                  <div class="post-row flex items-stretch">
+                    <h3 class="roboto text-gray-700">{{ .Page.Title }} ({{ .Count }})</h3>
+                  </div>
+                </a>
+              </div>
+
+          {{ end }}
+
+          <!-- <div class="episode">
             <a href="#" class="flex items-center hover:bg-gray-100 text-lg px-3 py-3 my-1">
               <div class="post-row flex items-stretch">
                 <h3 class="roboto text-gray-700">C# Functional Programming</h3>
@@ -124,10 +104,50 @@
                 <h3 class="roboto text-gray-700">#3 Delectus ex facere magnam earum sunt neque odit nemo vitae</h3>
               </div>
             </a>
-          </div>
+          </div> -->
         </div>
       </section>
       <!-- series -->
+
+      <!-- articles -->
+      <section class="max-w-4xl mx-auto px-3">
+        <h2 class="section-title roboto-slab font-medium flex justify-between align-bottom text-3xl border-b-4 text-gray-700 border-gray-700 py-2 my-2">
+          latest articles
+          <a class="section-button font-mono font-extralight rounded-lg bg-gray-100 hover:bg-gray-200 leading-4 text-lg py-3 px-2" href="/article/">all</a>
+        </h2>
+        <div class="posts">
+
+          <div class="article">
+            <a href="/article/sample-article/" class="flex hover:bg-gray-100 text-lg px-3 py-3 my-1">
+              <div class="post-row flex justify-around">
+                <time class="font-mono font-extralight roboto-mono text-gray-500 pr-8">Apr 01</time>
+                <h3 class="roboto text-gray-700">Sample Article</h3>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- articles -->
+
+      <!-- posts -->
+      <section class="max-w-4xl mx-auto px-3">
+        <h2 class="section-title roboto-slab font-medium flex justify-between align-bottom text-3xl border-b-4 text-gray-700 border-gray-700 py-2 my-2">
+          latest posts
+          <a class="section-button font-mono font-extralight rounded-lg bg-gray-100 hover:bg-gray-200 leading-4 text-lg py-3 px-2" href="/post/">all</a>
+        </h2>
+        <div class="posts">
+          <div class="post">
+            <a href="/post/sample-post/" class="flex items-center hover:bg-gray-100 text-lg px-3 py-3 my-1">
+              <div class="post-row flex items-stretch">
+                <time class="font-mono font-extralight roboto-mono text-gray-500 pr-8">Apr 01</time>
+                <h3 class="roboto text-gray-700">Sample Post</h3>
+              </div>
+            </a>
+          </div>
+
+      </section>
+      <!-- posts -->      
+
 
       <!-- projects -->
       <section class="max-w-4xl mx-auto px-3">

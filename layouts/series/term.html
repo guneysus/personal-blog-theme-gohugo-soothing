@@ -1,0 +1,8 @@
+<main>
+    <div>
+      <h2>{{ .Title }}</h2>
+      {{ range (.Paginator 9999999).Pages }}
+        {{ partial "list-item.html" . }}
+      {{ end }}
+      </div>  
+  </main>

@@ -1,3 +1,4 @@
+<!-- _default/list.html -->
 <div class="f4 source-sans-pro mt0 lh-comfort pl2">
 
     <span class="black-70 fw5">{{ .Date.Format "January" }} </span>
@@ -5,6 +6,7 @@
       <a href="{{ .Permalink }}" class="link dim black" aria-label="Go to {{ .Title }} post">{{ .Title }}</a>
   </div>
   <span class="list-item-date">
-    <!-- {{ .Date.Format "2006 | January" }} -->
+    {{ .Date.Format "2006 | January" }}
   </span>
-  
+</div>
+<!-- END _default/list.html -->

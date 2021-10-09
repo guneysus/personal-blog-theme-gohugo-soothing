@@ -1,16 +1,117 @@
-<main>
-    <h2 >{{ i18n "Series" }} - Series</h2> <!-- TODO -->
-    {{ if not (eq (len $.Site.Taxonomies.series) 0) }}
-    <ul>
-        {{ range $key, $taxonomy := $.Site.Taxonomies.series }}
-            <li>
-            <a 
-            href="{{ .Page.Permalink }}" 
-            aria-label="Go to {{ .Page.Title }}">
-            {{ .Page.Title }} ({{.Count}})
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="language" content="Turkish"> <!-- TODO -->
+    <meta http-equiv="content-language" content="tr"> <!-- TODO -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="author" content="Ahmed Şeref GÜNEYSU" />
+    <meta name="Description" content="Amazon Web Service, .NET, ASP.NET MVC Related posts, articles and ideas " /> <!-- TODO -->
+    {{ hugo.Generator }}
+    <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/949232?v=4&s=96"> <!-- TODO TEST -->
+    <link rel="canonical" href="{{ .Permalink }}">
+
+    <base href="{{ .Site.BaseURL }}" />
+
+    <title>{{ .Title }} | Ahmed Şeref GÜNEYSU</title> <!-- TODO -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;1,400&family=Roboto+Slab:wght@300;400;500&family=Roboto:wght@100;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link href="{{ .Site.BaseURL }}/css/app.css" rel="stylesheet" />
+
+  </head>
+  </head>
+
+  <body>
+
+    <header class="w-full">
+      <nav class="relative z-20 bg-white pb-6 px-6 md:pt-0 border-t border-b">
+        <div class="container mx-auto max-w-4xl justify-between items-center text-sm flex">
+          <div class="w-full md:w-1/4 text-center md:text-left py-4 flex flex-wrap justify-center items-stretch md:justify-start md:items-start">
+            <a aria-current="page" class="brand p-4" href="/">
+              <img src="https://avatars.githubusercontent.com/u/949232?v=4&s=50" height="50" width="50" alt="Avatar" />
             </a>
-            </li>
-        {{ end }}
-    </ul>
-    {{ end }}
-</main>
+          </div>
+          <div class="w-full md:w-3/4 text-center md:text-right">
+            <input
+              type="search"
+              placeholder="search"
+              name="search"
+              class="search border px-4 py-2 font-light roboto text-xl bg-transparent text-gray-600 focus:border-gray-700 focus:outline-none align-middle"
+            />
+            <div class="hidden">
+              <a href="#" class="font-light roboto mx-1 px-4 py-3 text-xl align-middle text-gray-600 hover:bg-gray-100 rounded-lg ">articles</a>
+              <a href="#" class="font-light roboto mx-1 px-4 py-3 text-xl align-middle text-gray-600 hover:bg-gray-100 rounded-lg">about</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+
+    <!-- MAIN series/terms.html -->
+    <main class="w-full">
+    
+      <div class="bg-purple-50">
+        <!-- intro -->
+        <section class="text-center px-4 py-8 mb-4 bg-gray-100 border-b">
+          <div class="max-w-4xl mx-auto text-left">
+            <h1 class="text-3xl roboto-slab font-medium text-gray-700">Hi! I'm Ahmed.</h1>
+            <p class="text-xl roboto-mono font-light leading-loose text-gray-dark">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- series -->
+      <section class="max-w-4xl mx-auto px-3">
+        <h2 class="section-title roboto-slab font-medium flex justify-between align-bottom text-3xl border-b-4 text-gray-700 border-gray-700 py-2 my-2">
+          series
+          <a class="section-button font-mono font-extralight rounded-lg bg-gray-100 hover:bg-gray-200 leading-4 text-lg py-3 px-2" href="series/">all</a>
+        </h2>
+        <div class="series">
+
+          {{ range $key, $taxonomy := $.Site.Taxonomies.series }}
+              {{ $currentTagCount := len $taxonomy.Pages }}
+              {{ $count := len $taxonomy.Pages }}
+              
+              <div class="episode">
+                <a href="{{ .Page.Permalink }}" 
+                class="flex items-center hover:bg-gray-100 text-lg px-3 py-3 my-1"
+                aria-label="Go to {{ $key }}">
+                  <div class="post-row flex items-stretch">
+                    <h3 class="roboto text-gray-700">{{ .Page.Title }} ({{ .Count }})</h3>
+                  </div>
+                </a>
+              </div>
+
+          {{ end }}
+
+        </div>
+      </section>
+      <!-- series -->
+
+    </main>
+    <!-- MAIN series/terms.html -->
+
+    <footer class="w-full border-t mx-auto max-w-4xl py-6 mt-4 mb-8 text-xs md:text-lg">
+      <div class="container text-center mx-auto">
+        <!-- footer -->
+        <nav class="container footer-links">
+          <!-- footer menu items -->
+          <a href="https://bulten.guneysu.xyz/" target="_blank" rel="noopener noreferrer" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg hidden sm:inline-flex">newsletter</a>
+          <a href="/index.xml" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">rss</a>
+          <a href="#" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">stackoverflow</a>
+          <a href="#" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">linkedin</a>
+          <a href="#" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">github</a>
+        </nav>
+      </div>
+
+      <div class="text-center text-xs my-12 font-sans text-gray-400">theme is inspired from <a class="hover:underline py-4" href="https://www.taniarascia.com/">Tania Rascia</a>'s blog</div>
+    </footer>
+  </body>
+</html>

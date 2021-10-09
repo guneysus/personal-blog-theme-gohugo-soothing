@@ -12,6 +12,12 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/949232?v=4&s=96"> <!-- TODO TEST -->
     <link rel="canonical" href="{{ .Permalink }}">
 
+
+
+    {{ $options := (dict "outputStyle" "compressed" "enableSourceMap" true) }}
+    {{ $style := resources.Get "main.scss" | toCSS $options | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.Permalink }}">
+    
     <base href="{{ .Site.BaseURL }}" />
 
     <title>{{ .Title }} | Ahmed Şeref GÜNEYSU</title> <!-- TODO -->
@@ -51,6 +57,8 @@
       </nav>
     </header>
 
+
+    <!-- MAIN post/single.html -->
     <main class="w-full">
 
       <section class="prose prose-lg max-w-4xl mx-auto px-3 mt-12">
@@ -67,8 +75,8 @@
         </div>
 
       </section>
-
     </main>
+  <!-- MAIN post/single.html -->
 
     <footer class="w-full border-t mx-auto max-w-4xl py-6 mt-4 mb-8 text-xs md:text-lg">
       <div class="container text-center mx-auto">

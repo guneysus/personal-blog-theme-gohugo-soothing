@@ -29,6 +29,7 @@
       rel="stylesheet"
     />
     <link href="{{ .Site.BaseURL }}/css/app.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
 
   </head>
 
@@ -94,4 +95,10 @@
       <div class="text-center text-xs my-12 font-sans text-gray-400">theme is inspired from <a class="hover:underline py-4" href="https://www.taniarascia.com/">Tania Rascia</a>'s blog</div>
     </footer>
   </body>
+	<script>	
+		var lazyLoadInstance = new LazyLoad({
+			elements_selector: "[loading=lazy]"
+			
+		});      
+	</script>  
 </html>

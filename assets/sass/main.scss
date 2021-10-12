@@ -1,0 +1,478 @@
+@import url("//cdnjs.cloudflare.com/ajax/libs/tachyons/4.11.1/tachyons.min.css");
+
+@import url("https://fonts.googleapis.com/css?family=Libre+Baskerville|Source+Sans+Pro:300,700|Fira+Mono:400,500,700&display=swap&subset=latin-ext");
+
+@import "search.scss";
+
+.article-content p a {
+  color: currentColor;
+  text-decoration-style: dotted;
+  opacity: 1;
+}
+
+.article-tag {
+  font-family: "Source Sans Pro", sans-serif;
+  font-display: auto;
+  white-space: pre;
+}
+
+.article-short-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+body div.container {
+  padding-bottom: 2.5em;
+}
+
+/* https://tachyons.io tree shaking */
+
+.libre-baskerville {
+  font-family: "Libre Baskerville", serif;
+  font-display: auto;
+}
+
+.noto-sans {
+  font-family: "Noto Sans", sans-serif;
+  font-display: auto;
+}
+
+.source-sans-pro {
+  font-family: "Source Sans Pro", sans-serif;
+  font-display: auto;
+}
+
+.lh-comfort {
+  line-height: 1.75;
+}
+
+.lh-wide {
+  line-height: 1.9;
+}
+
+.fira {
+  font-family: "Fira Mono", monospace;
+}
+
+.code,
+code {
+  font-family: "Fira Mono", monospace;
+  font-display: auto;
+}
+
+p code {
+	/*
+  color: #137752;
+   background-color:#FFFCEB;
+   padding: 0.1em 0.2em;
+  border: 0.5px dotted lightgray;
+  */
+}
+
+i.icon {
+  font-family: "fontello";
+  font-style: normal;
+  font-display: auto;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+
+  /* You can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+i.icon:before,
+i.icon:before {
+  margin: 0 0.2em 0 0;
+}
+
+.xdim {
+  opacity: 1;
+}
+
+.xdim,
+.xdim:focus,
+.xdim:hover {
+  //   transition: opacity 0.15s ease-in;
+  transition: color 0.15s ease-in;
+}
+
+.xdim:focus,
+.xdim:hover {
+  //   opacity: 0.5;
+  //   opacity: 0.5;
+  //   color: adjust-color($color: #000000, $red: 1, $green: 2, $blue: 3, $hue: 0, $saturation: 0%, $lightness: 0%, $alpha: 1.0);
+  color: #111;
+}
+
+.xdim:active {
+  //   opacity: 0.8;
+  //   transition: opacity 0.15s ease-out;
+  // color: adjust-hue($color: #000000, $degrees: 1);
+  color: #111;
+}
+
+.is-featured {
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-display: auto;
+}
+
+.section.home-page-posts {
+  background-color: rgba($color: rgb(221, 221, 231), $alpha: 0.25);
+}
+
+.hover-m0:hover {
+  margin: 0;
+}
+
+.hover-m0:focus {
+  margin: 0;
+}
+
+.footnote-ref {
+}
+
+article {
+  counter-reset: section;
+  hyphens: manual;
+  kerning: auto;
+
+  sup.footnote-ref,
+  sub.footnote-ref {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.7em;
+    color: gray;
+    padding: 0.1em 0.4em;
+    margin: 0 0.15em;
+    border: 1px dotted gray;
+    font-family: "Fira Mono", monospace;
+  }
+
+  //   body {
+  //     /* Set "section" to 0 */
+
+  //   }
+
+  h2 {
+    /* Set "subsection" to 0 */
+    counter-reset: subsection;
+  }
+
+  h2::before {
+    /* Increment "section" by 1 */
+    counter-increment: section;
+    content: "" counter(section) ". ";
+  }
+
+  h3::before {
+    /* Increment "subsection" by 1 */
+    counter-increment: subsection;
+    content: counter(section) "." counter(subsection) " ";
+  }
+
+  p,
+  ol li,
+  ul li {
+    text-align: justify;
+
+
+    a {
+      font-family: "Fira Mono", "Courier New", Courier, monospace;
+      font-size: medium;
+      color: rgb(0, 0, 160);
+      text-decoration: none;
+      border-bottom: 1px dotted gray;
+    
+      &:hover {
+        text-decoration: underline;
+        border-bottom: none;
+        color: #137752;
+        transition: color 0.15s ease-in;
+      }
+    
+      &:active {
+        transition: color 0.15s ease-in;
+      }
+    
+      &:visited {
+        color: lighten($color: #5e2ca5, $amount: 30);
+        transition: color 0.15s ease-in;
+    
+      }
+    
+      &:focus {
+        transition: #001b44 0.15s ease-in;
+      }  
+    }
+
+  }
+
+  p {
+    text-indent: 1rem;
+    // hyphens: auto;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    padding-left: 1em;
+  }
+}
+
+sub {
+  top: 0.4em;
+}
+
+blockquote {
+  border-bottom: 1px solid #ddd;
+  border-left: 0.5em solid #ddd;
+  padding: 0.1rem 1.25rem 0.1rem 1.25rem;
+}
+
+@mixin notice($color) {
+  border-color: lighten($color: $color, $amount: 10);
+  background-color: lighten($color: $color, $amount: 21);
+}
+
+.notices {
+  padding: 0.75rem 1.25rem;
+  margin: 1em 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  color: hsl(0, 0%, 21%);
+  font-size: large;
+  line-height: 1.7em;
+  border-width: 0 0 0 0.5em;
+  border-bottom-width: 2px;
+  border-style: solid;
+}
+
+.notices.note {
+  @include notice(khaki);
+}
+
+.notices.tip {
+  @include notice(hsl(141, 53%, 53%));
+}
+
+.notices.info {
+  @include notice(hsla(204, 86%, 53%, 0.3));
+}
+
+.notices.warning {
+  @include notice(hsl(48, 100%, 60%));
+}
+
+.notices.danger {
+  @include notice(hsl(348, 100%, 61%));
+}
+
+.hidden {
+  display: none;
+}
+
+.commit-info {
+  .commit-top-pane {
+    background-color: #eaf5ff;
+    padding: 0;
+
+    .commit-title {
+      display: inline-block;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .commit-bottom-pane {
+    .commit-detail {
+      display: inline-flex;
+    }
+
+    .commit-meta {
+      display: inline;
+      position: relative;
+      bottom: 0.5em;
+    }
+  }
+}
+
+nav#TableOfContents {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  ul {
+    counter-reset: sec;
+    li {
+      counter-increment: sec;
+
+      a {
+        &::before {
+          // content: counter(sec) ".";
+          content: counter(sec) ".";
+        }
+      }
+    }
+  }
+
+  ul:first-child {
+    padding-left: 0;
+    // counter-reset: sec;
+    // list-style: none;
+    li {
+      // list-style: none;
+
+      a {
+        text-decoration: none;
+        // counter-increment: sec;
+        color: #111;
+
+        &::before {
+          // content: counter(sec) ".";
+        }
+        &:hover,
+        :focus {
+          opacity: 0.5;
+          transition: opacity 0.15s ease-in;
+        }
+
+        &:active {
+          opacity: 0.8;
+          transition: opacity 0.15s ease-out;
+        }
+      }
+    }
+  }
+}
+
+button.toggle-toc.collapsed {
+  &::after {
+    content: "+";
+  }
+}
+
+button.toggle-toc {
+  &::after {
+    content: "-";
+  }
+  cursor: pointer;
+  background-color: transparent;
+  font-family: monospace;
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 0.25em;
+  box-shadow: 3px 3px 0 lightgrey;
+  top: 3px;
+  float: right;
+
+  &:active {
+    box-shadow: 0px 0px 0 lightgrey;
+    top: 3px;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    // background-color: lightblue;
+    top: 3px;
+  }
+}
+
+.toc-container {
+  .toc {
+    transition: visibility 0s linear 0.7s, opacity 0.7s ease-in-out;
+  }
+  .toc.hide {
+    opacity: 0;
+    visibility: hidden;
+    nav {
+      display: none;
+    }
+  }
+  .toc.show {
+    transition-delay: 0s;
+    visibility: visible;
+    opacity: 1;
+
+    nav {
+      display: block;
+    }
+  }
+}
+
+.highlight pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  line-height: 1.2em;
+  border: 2px dotted lightgrey;
+  /* these two values do the same thing */
+  font-feature-settings: "liga" 1;
+  font-feature-settings: "liga1" on;
+  font-family: "Fira Mono", monospace;
+  font-size: medium;
+
+}
+
+details {
+  outline: none;
+
+  summary {
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+    }
+
+    &:hover {
+    }
+
+    &:active {
+    }
+  }
+}
+
+/*
+credits: https://codepen.io/thomashigginbotham/pen/aYqvqQ?editors=1100
+*/
+summary {
+  list-style-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/right-arrow.svg);
+}
+details[open] summary {
+  list-style-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/down-arrow.svg);
+}
+summary::-webkit-details-marker {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/right-arrow.svg);
+  color: transparent;
+}
+details[open] summary::-webkit-details-marker {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/down-arrow.svg);
+}
+

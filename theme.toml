@@ -1,0 +1,21 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
+
+name = "Soothing"
+license = "MIT"
+licenselink = "https://github.com/guneysus/blog/blob/develop/themes/guneysu-blog/LICENSE"
+description = "My blog theme, occasionally being improved"
+homepage = "http://blog.guneysu.xyz"
+tags = ['blog', 'minimal']
+features = []
+min_version = "0.82"
+
+[author]
+  name = "Ahmed Şeref Güneysu"
+  homepage = "https://github.com/guneysus"
+
+# If porting an existing theme
+[original]
+  name = ""
+  homepage = ""
+  repo = ""

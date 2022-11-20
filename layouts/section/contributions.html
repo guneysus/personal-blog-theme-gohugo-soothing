@@ -1,0 +1,34 @@
+{{ define "title"}}
+<section class="text-center px-4 py-8 mb-4 bg-gray-100 border-b">
+    <div class="max-w-4xl mx-auto text-left">
+      
+      <h1 class="text-3xl roboto-slab font-medium text-gray-700">{{ .Title }}</h1>
+      
+      <p class="text-xl roboto-mono font-light leading-loose text-gray-dark">{{ .Description }}</p>
+    </div>
+  </section>
+{{ end }}
+
+
+{{ define "main" }}
+      
+<section class="prose prose-lg max-w-4xl mx-auto px-3 mt-12">
+    <div class="article-content f4 f6-m lh-wide">
+      <aside class="toc mt2">
+        <div class="toc-container br2 ba b--black-20 pv2 pl4 pr2 mt4
+        washed-green
+        pattern-zigzag-xl
+        ">
+          <button class="toggle-toc link black bg-animate dim" onclick="toggleTableOfContents()"></button>                
+          <h1 class="f2 f2-m f2-l fw5 mb1 mt1 pa0 lh-title black fw7">İçindekiler</h1>
+          <div class="toc show">
+            {{ .TableOfContents }}   
+          </div>
+        </div>           
+      </aside>
+
+      {{ .Content }}
+    </div>
+
+  </section>
+{{ end }}

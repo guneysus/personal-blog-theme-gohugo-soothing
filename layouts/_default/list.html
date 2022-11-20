@@ -1,10 +1,28 @@
-<div class="f4 source-sans-pro mt0 lh-comfort pl2">
-
-    <span class="black-70 fw5">{{ .Date.Format "January" }} </span>
-    <span class="black-50 pr2">{{ .Date.Format "2" }}</span>
-      <a href="{{ .Permalink }}" class="link dim black" aria-label="Go to {{ .Title }} post">{{ .Title }}</a>
+{{ define "title"}}
+<section class="text-center px-4 py-8 mb-4 bg-gray-100 border-b">
+  <div class="max-w-4xl mx-auto text-left">
+    
+    <h1 class="text-3xl roboto-slab font-medium text-gray-700">{{ .Title }}</h1>
+    
+    <p class="text-xl roboto-mono font-light leading-loose text-gray-dark">{{ .Description }}</p>
+    <time class="float-left font-light text-gray-400">{{ .Lastmod.Format "2006, January 02" }}</time>
   </div>
-  <span class="list-item-date">
-    <!-- {{ .Date.Format "2006 | January" }} -->
-  </span>
-  
+</section>
+{{ end }}
+
+{{ define "main" }}
+
+<section>
+    <div>
+      <ul>
+        {{ range .Data.Pages.ByDate.Reverse }}
+        <li>
+          <a href="{{ .Permalink}}">{{ .Title }}</a>
+          <span>{{ .Date.Format "January 2, 2006" }}</span>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+</section>
+{{ end }}
+

@@ -1,0 +1,35 @@
+<!-- TODO -->
+
+<link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/949232?v=4&s=96"> <!-- TODO TEST -->
+<link rel="canonical" href="{{ .Permalink }}">
+
+
+<link
+href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;1,400&family=Roboto+Slab:wght@300;400;500&family=Roboto:wght@100;300;400;500&display=swap"
+rel="stylesheet"
+/>
+
+{{ $options := (dict "outputStyle" "compressed" "enableSourceMap" true) }}
+
+{{ $codeTheme := resources.Get "css/pygments/bw.css" | toCSS | minify | fingerprint }}
+{{ $app := resources.Get "css/app.css" | minify | fingerprint }}
+{{ $style := resources.Get "sass/main.scss" | toCSS $options | minify | fingerprint }}
+{{ $fontello := resources.Get "css/fontello.css" | toCSS $options | minify | fingerprint }}
+
+<link rel="stylesheet" href="{{ $codeTheme.Permalink }}">
+<link rel="stylesheet" href="{{ $style.Permalink }}">
+<link rel="stylesheet" href="{{ $fontello.Permalink }}">  
+<link rel="stylesheet" href="{{ $app.Permalink }}">  
+
+<!-- <script src="/js/main.js"></script> -->
+
+<link rel="canonical" href="{{ .Permalink }}" />
+{{ $title := .Title }}
+{{ with .OutputFormats.Get "RSS" }}
+    <link
+      href="{{ .RelPermalink }}"
+      rel="alternate"
+      type="application/rss+xml"
+      title="{{ $title }}"
+    />
+{{ end }}

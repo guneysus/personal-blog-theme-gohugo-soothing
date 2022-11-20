@@ -28,7 +28,7 @@
 
               "
           aria-label="Go to {{ $tag}} tag"
-          href="{{ "tags/" | relLangURL }}{{ . | urlize }}"><i class="icon icon-hash"></i>{{ $tag }}</a>
+          href="{{ "tags/" | relURL }}{{ . | urlize }}"><i class="icon icon-hash"></i>{{ $tag }}</a>
           {{ end }}</span>
         {{ end }}  
       </div>  
@@ -50,11 +50,19 @@
       <section class="prose prose-lg max-w-4xl mx-auto px-3 mt-12">
         <div class="article-content f4 f6-m lh-wide">
           <aside class="toc mt2">
-            <div class="toc-container br2 ba b--gray-100">
-              <h2 class="toc-title black ph3 ma0">İçindekiler</h2>
-              <div class="toc show red">{{- .TableOfContents -}}</div>
+            <div class="toc-container br2 ba b--black-20 pv2 pl4 pr2 mt4
+            washed-green
+            pattern-zigzag-xl
+            ">
+              <button class="toggle-toc link black bg-animate dim" onclick="toggleTableOfContents()"></button>                
+              <h1 class="f2 f2-m f2-l fw5 mb1 mt1 pa0 lh-title black fw7">İçindekiler</h1>
+              <div class="toc show">
+                {{ .TableOfContents }}   
+              </div>
             </div>           
           </aside>
+
+          {{ .Content }}
         </div>
 
       </section>
@@ -63,33 +71,8 @@
         <div class="content">
           {{ .Content }}
         </div>
-      </section>
-
-      <section class="prose prose-lg max-w-4xl mx-auto px-3">
-
-        {{ if gt (len (.Resources.Match "res/**.*")) 0 }}
-
-        <div class="resources bt b--black-20 mt3">
-
-            <h3 id="ref:resources">Resources</h2>
-            
-            <ul class="list code lh-comfort mt0">
-              {{ with .Resources.Match "res/**.*" }}
-              {{ range . }}
-              <li class="">
-                    <a class="link black bg-animate hover-bg-light-yellow" href="{{ .RelPermalink }} ">
-                      <i class="icon icon-file-archive"> </i>
-                      {{ .Title }}</a>
-              </li>
-              {{ end }}{{ end }}
-
-            </div>
-  
-        </div>
-        {{ end }}
 
       </section>
-      
     </main>
   <!-- MAIN _default/single.html -->
 {{ end }}

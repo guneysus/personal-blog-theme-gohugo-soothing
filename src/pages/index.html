@@ -1,149 +1,460 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="author" content="Ahmed Şeref GÜNEYSU" />
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1315&amp;path=livereload" data-no-instant defer></script>
 
-    <link href="../../styles/app.css" rel="stylesheet" />
+<meta name="generator" content="Hugo 0.88.1" />
 
-    <meta name="Description" content="Amazon Web Service, .NET, ASP.NET MVC Related posts, articles and ideas " />
-    <title>/home/asguneysu | Ahmed Şeref GÜNEYSU</title>
-    <meta name="generator" content="{{ HUGO_VERSION }}" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;1,400&family=Roboto+Slab:wght@300;400;500&family=Roboto:wght@100;300;400;500&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body>
-    <header class="w-full">
+<meta name="description" content="Bu yazımda Hugo ile oluşturulmuş bir web sitesini, CI/CD aracı olan TravisCI ile AWS S3 üzerine yayınlayacağız." />
 
-      <nav class="bg-white md:pt-0 pb-6 px-6 relative z-20 border-t border-b">
-        <div class="container mx-auto max-w-4xl justify-between items-center text-sm  md:flex md:text-md md:justify-start">
-          <div class="w-full md:w-1/4 text-center md:text-left py-4 flex flex-wrap justify-center items-stretch md:justify-start md:items-start">
-            <a aria-current="page" class="brand" href="/">
-              <img src="https://avatars.githubusercontent.com/u/949232?v=4&s=50" height="50" width="50" alt="Avatar" />
-            </a>
-          </div>
-          <div class="w-full md:w-3/4 text-center md:text-right">
-            <input
-              type="search"
-              placeholder="search"
-              name="search"
-              class="search focus:outline-none focus:border-gray-800 roboto-mono font-light roboto text-xl align-middle text-gray-600 bg-transparent border-b-2 px-4 py-2"
-            />
-            <a href="#" class="font-light roboto mx-1 px-4 py-3 text-xl align-middle text-gray-600 hover:bg-gray-100 rounded-lg">articles</a>
+
+
+<meta name="keywords" content="aws,s3,travisci,continuous-integration,">
+
+<meta property="article:tag" content="aws,s3,travisci,continuous-integration,">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="Bu yazımda Hugo ile oluşturulmuş bir web sitesini, CI/CD aracı olan TravisCI ile AWS S3 üzerine yayınlayacağız." />
+<meta property="og:title" content="Statik Bir Hugo Web Sitesini AWS S3 üzerine TravisCI ile Yayınlamak" />
+<meta property="og:site_name" content="ahmed şeref&#39;s blog" />
+<meta property="og:image" content="" /> 
+<meta property="og:image:type" content="image/jpeg" /> 
+<meta property="og:image:width" content="" /> 
+<meta property="og:image:height" content="" /> 
+<meta property="og:url" content="//localhost:1315/post/2018/03/statik-bir-hugo-web-sitesini-aws-s3-uzerine-travisci-ile-yayinlamak/" />
+<meta property="og:locale" content="" />
+<meta property="article:published_time" content="2018-03-24" /> 
+<meta property="article:modified_time" content="2018-03-24" />
+
+
+
+
+
+
+<title>Statik Bir Hugo Web Sitesini AWS S3 üzerine TravisCI ile Yayınlamak | Ahmed Şeref Güneysu </title> 
+
+
+
+<link rel="shortcut icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/949232?v=4&s=96"> 
+<link rel="canonical" href="//localhost:1315/post/2018/03/statik-bir-hugo-web-sitesini-aws-s3-uzerine-travisci-ile-yayinlamak/">
+
+
+<link
+href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;1,400&family=Roboto+Slab:wght@300;400;500&family=Roboto:wght@100;300;400;500&display=swap"
+rel="stylesheet"
+/>
+<link href="//localhost:1315//css/app.css" rel="stylesheet" /> 
+
+
+
+
+
+
+<link rel="stylesheet" href="//localhost:1315/css/pygments/bw.min.f5b15f52c0ffddddb1dee5d066f794f9af1f1675912861dcbe495dbeafd80926.css">
+<link rel="stylesheet" href="//localhost:1315/sass/main.min.91c71a38e4ee8857ada83e362dd7d974432ea14643614932b447c98dbd43caf4.css">
+<link rel="stylesheet" href="//localhost:1315/css/fontello.min.09349d33e15a5afe662a433f88b5b163f6dcaad9f005ff50fce2a25cf9d419a1.css">  
+
+
+
+<link rel="canonical" href="//localhost:1315/post/2018/03/statik-bir-hugo-web-sitesini-aws-s3-uzerine-travisci-ile-yayinlamak/" />
+
+
+
+</head>
+
+<body>
+  <header class="w-full">
+    <nav class="relative z-20 bg-white pb-6 px-6 md:pt-0 border-t border-b">
+      <div class="container mx-auto max-w-4xl justify-between items-center text-sm flex">
+        <div class="w-full md:w-1/4 text-center md:text-left py-4 flex flex-wrap justify-center items-stretch md:justify-start md:items-start">
+          <a aria-current="page" class="brand p-4" href="/">
+            <img src="https://avatars.githubusercontent.com/u/949232?v=4&s=50" height="50" width="50" alt="Avatar" />
+          </a>
+        </div>
+        
+        <div class="w-full md:w-3/4 text-center md:text-right">
+          
+          <div class="hidden"> 
+            <a href="#" class="font-light roboto mx-1 px-4 py-3 text-xl align-middle text-gray-600 hover:bg-gray-100 rounded-lg ">articles</a>
             <a href="#" class="font-light roboto mx-1 px-4 py-3 text-xl align-middle text-gray-600 hover:bg-gray-100 rounded-lg">about</a>
           </div>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
 
+  <main class="w-full">
+    <div class="bg-purple-50">
+<section class="text-center px-4 py-8 mb-4 bg-gray-100 border-b">
+  
+  <div class="max-w-4xl mx-auto text-left">
+    
+    <h1 class="text-3xl roboto-slab font-medium text-gray-700">Statik Bir Hugo Web Sitesini AWS S3 üzerine TravisCI ile Yayınlamak</h1>
+    
+    <p class="text-xl roboto-mono font-light leading-loose text-gray-dark">Bu yazımda Hugo ile oluşturulmuş bir web sitesini, CI/CD aracı olan TravisCI ile AWS S3 üzerine yayınlayacağız.</p>
+
+    <div class="article-tags pb2">
+      
+        <span style="line-height: 2.2;">
+          
+          
+          
+          <a class="article-tag 
+              source-sans-pro 
+              link xdim f5 fw2 
+              lh-wide black-80
+              b--black-20
+              br3__bt__bl__br--top__br--left__na1__hover-m0__design#3
+              ba br3 design#1
+              bl__bb__hover-m0__na1__design#2
+              pv1 ph2 mh0
+              bg-animate hover-bg-washed-yellow
+              animate 
+
+              "
+          aria-label="Go to aws tag"
+          href="/tags/aws"><i class="icon icon-hash"></i>aws</a>
+          
+          
+          
+          
+          <a class="article-tag 
+              source-sans-pro 
+              link xdim f5 fw2 
+              lh-wide black-80
+              b--black-20
+              br3__bt__bl__br--top__br--left__na1__hover-m0__design#3
+              ba br3 design#1
+              bl__bb__hover-m0__na1__design#2
+              pv1 ph2 mh0
+              bg-animate hover-bg-washed-yellow
+              animate 
+
+              "
+          aria-label="Go to s3 tag"
+          href="/tags/s3"><i class="icon icon-hash"></i>s3</a>
+          
+          
+          
+          
+          <a class="article-tag 
+              source-sans-pro 
+              link xdim f5 fw2 
+              lh-wide black-80
+              b--black-20
+              br3__bt__bl__br--top__br--left__na1__hover-m0__design#3
+              ba br3 design#1
+              bl__bb__hover-m0__na1__design#2
+              pv1 ph2 mh0
+              bg-animate hover-bg-washed-yellow
+              animate 
+
+              "
+          aria-label="Go to travisci tag"
+          href="/tags/travisci"><i class="icon icon-hash"></i>travisci</a>
+          
+          
+          
+          
+          <a class="article-tag 
+              source-sans-pro 
+              link xdim f5 fw2 
+              lh-wide black-80
+              b--black-20
+              br3__bt__bl__br--top__br--left__na1__hover-m0__design#3
+              ba br3 design#1
+              bl__bb__hover-m0__na1__design#2
+              pv1 ph2 mh0
+              bg-animate hover-bg-washed-yellow
+              animate 
+
+              "
+          aria-label="Go to continuous-integration tag"
+          href="/tags/continuous-integration"><i class="icon icon-hash"></i>continuous-integration</a>
+          </span>
+          
+      </div>  
+
+    <p><time class="float-left text-gray-400">2018 March 24</time></p>
+    <p><time class="float-right text-gray-400">Last modified: 2021 October 12, 21:42 UTC</time></p>
+    
+  </div>
+
+  
+</section>
+
+</div>
+
+    <div id="content">
+    
     <main class="w-full">
-      <div class="bg-purple-50">
-        <!-- intro -->
-        <section class="text-center px-4 py-8 mb-4 bg-gray-100 border-b">
-          <div class="max-w-4xl mx-auto text-left">
-            <h1 class="text-3xl roboto-slab font-medium text-gray-700 pb-4">Hi! I'm Ahmed.</h1>
-            <p class="text-xl roboto-mono font-light leading-loose text-gray-dark">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          </div>
-        </section>
-      </div>
-      <section class="max-w-4xl mx-auto">
-        <!-- articles -->
-        <h2 class="section-title roboto-slab font-medium flex justify-between align-bottom text-3xl border-b-4 text-gray-700 border-gray-700 py-2 my-2">
-          latest articles
-          <a class="section-button font-mono font-extralight rounded-lg bg-gray-100 hover:bg-gray-200 leading-4 text-lg py-3 px-2" href="#">all</a>
-        </h2>
-        <div class="posts">
-          <div class="post">
-            <a href="#" class="flex items-center hover:bg-gray-100 text-lg px-3 py-3 my-1">
-              <div class="post-row flex items-stretch">
-                <time class="font-mono font-extralight roboto-mono text-gray-500 pr-8">Apr 01</time>
-                <h3 class="roboto text-gray-700">#1 Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-              </div>
-            </a>
-          </div>
+      
+      <section class="prose prose-lg max-w-4xl mx-auto px-3 mt-12">
+        <div class="article-content f4 f6-m lh-wide">
+          <aside class="toc mt2">
+            <div class="toc-container br2 ba b--gray-100">
+              <h2 class="toc-title black ph3 ma0">İçindekiler</h2>
+              <div class="toc show red"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-develop">1. Develop</a>
+      <ul>
+        <li><a href="#2-config">2. Config</a></li>
+        <li><a href="#deploy--run">Deploy &amp; Run</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div>           
+          </aside>
+        </div>
 
-          <div class="post ">
-            <a href="#" class="flex hover:bg-gray-100 text-lg px-3 py-3 my-1">
-              <div class="post-row flex justify-around">
-                <time class="font-mono font-extralight roboto-mono text-gray-500 pr-8">Apr 01</time>
-                <h3 class="roboto text-gray-700">#2 Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h3>
-              </div>
-            </a>
-          </div>
+      </section>
 
-          <div class="post">
-            <a href="#" class="flex items-center hover:bg-gray-100 text-lg px-3 py-3 my-1">
-              <div class="post-row flex items-stretch">
-                <time class="font-mono font-extralight roboto-mono text-gray-500 pr-8">Apr 01</time>
-                <h3 class="roboto text-gray-700">#3 Delectus ex facere magnam earum sunt neque odit nemo vitae</h3>
-              </div>
-            </a>
-          </div>
+      <section class="prose prose-lg max-w-4xl mx-auto px-3 mt-12">
+        <div class="content">
+          <p>Bu yazımda Hugo ile oluşturulmuş bir web sitesini, CI/CD aracı olan TravisCI ile
+AWS S3 üzerine yayınlayacağız.</p>
+<h1 id="neden-hugo">Neden Hugo</h1>
+<p>Şimdiye kadar onlarca araç denedim, kullandım. Sunucu taraflı olarak Drupal 7&rsquo;yi
+uzun süre kullandım, siteyi statik şekilde arşivledim ve kenara aldım. Onlarca
+statik web sitesi aracı denedim, Jekyll, Octopress, Pelikan, Lektor ve bir aklıma
+gelen gelmeyen bir çok araç. Zilyon adet çözüm mevcut. Bu tür araçları kullanırken
+gördüğüm en büyük sorunlar:</p>
+<p>Sunucu taraflı olanların canlı sistem olmaları, bakıma ve izlenmeye ihtiyaç
+duymaları, kaynak tüketmeleri, güvenlik açıkları, veri tabanı bağımlılıkları…</p>
+<p>Şu anda aklıma gelen taslakları, yazılım geliştirirken karşılaştığım &ldquo;pis kokan&rdquo;
+kod parçalarını markdown ile rahatça yazabildiğim Heroku üzerinde çalışan bir Django
+uygulaması mevcut.</p>
+<p>İşi profesyonel bloggerlık olmayan ve bakmakla yükümlü olduğu diğer &ldquo;canlı&rdquo;
+web uygulamaları olan bizler için statik web sitelerini çok daha sevimli bulanlardanım.</p>
+<p>Hikaye kısmını burada bırakıp sürecimizi üç aşamaya ayıralım:</p>
+<ol>
+<li><strong>Develop</strong>:
+Hugo&rsquo;nun kurulması ve lokal geliştirme ortamının oluşturulmasını anlatacağız.</li>
+<li><strong>Config</strong>: TravisCI ve AWS S3 ayarlarının yapılmasını burada anlatacağız.</li>
+<li><strong>Deploy &amp; Run</strong>: TravisCI ile web sitemizi nasıl yayınlayacağımızı anlatacağız.</li>
+</ol>
+<p>İhtiyacınız olanlar:</p>
+<ol>
+<li>TravisCI hesabı</li>
+<li>AWS hesabı</li>
+</ol>
+<h2 id="1-develop">1. Develop</h2>
+<p><a href="https://gohugo.io/getting-started/installing/">GoHugo &gt; Installing</a> adresinden
+işletim sisteminize uygun ve kolayınıza gelen yöntemlerden biri ile komut satırı
+aracını kurmanız gerekiyor.</p>
+<p>Debian tabanlı bir işletim sisteminde kurulum çok basit:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">wget https://github.com/gohugoio/hugo/releases/download/v0.37.1/hugo_0.37.1_Linux-64bit.deb
+sudo dpkg -i hugo_0.37.1_Linux-64bit.deb
+</code></pre></div><p><a href="https://gohugo.io/getting-started/quick-start/">Quick Start</a> kısmını takip ederek
+iki dakika içinde ilk içeriğinizi yazmaya başlayabilirsiniz.</p>
+<p>Hugo ile henüz yayınlanmasını istemediğiniz içerikleri taslak olarak kaydedebilir,
+veya ileri bir yayınlanma tarihi verebilirsiniz. Böylece açıkça belirtmediğiniz
+taktirde taslaklarınız veya ileri tarihli yazılarınız yayınlanmamamış olur.</p>
+<p>Yazılarınızı yazarken taslak aşamasından olan yazılarınızı da görmek
+isteyebilirsiniz.</p>
+<p>Bunu Hugo&rsquo;ya belirtmemiz gerekiyor. <code>Makefile</code> kullanmayı seviyorum. <code>make</code>
+dediğinizde <a href="http://127.0.0.1:1313">http://127.0.0.1:1313</a> adresindeki web sunucusuyla sitenizin
+önizlemesini görebilirsiniz.</p>
+<div class="">
+<details class="ba mv2 pa2 b--light-gray">
+<summary class="fira mv1 dim fw7">Makefile</summary>
+<span><a download="Makefile" class="link black bg-animate hover-bg-light-yellow pv3 ph3" href="./src/Makefile"><i class="icon icon-download"> </i> download</a></span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="nf">default</span><span class="o">:</span> <span class="n">develop</span>
+<p><span class="nv">DEVELOP</span> <span class="o">:=</span> hugo <span class="se"><br />
+</span><span class="se"></span>	&ndash;watch serve <span class="se"><br />
+</span><span class="se"></span>	&ndash;destination /tmp/blog_dev <span class="se"><br />
+</span><span class="se"></span>	&ndash;buildDrafts <span class="se"><br />
+</span><span class="se"></span>	&ndash;buildFuture <span class="se"><br />
+</span><span class="se"></span>	&ndash;baseURL<span class="o">=</span>127.0.0.1</p>
+<p><span class="nf">develop</span><span class="o">:</span>
+<span class="k">$(</span>DEVELOP<span class="k">)</span></p>
+<p><span class="nf">.PHONY</span><span class="o">:</span> <span class="n">default</span> <span class="n">develop</span></code></pre></div></p>
+</details>
+</div>
+<p>Artık Github&rsquo;da web siteniz için yeni bir repo oluşturabilir ve değişikliklerinizi
+<em>push</em> edebilirsiniz.</p>
+<hr />
+<h3 id="2-config">2. Config</h3>
+<h4 id="s3-bucket-oluşturma-ve-izinleri-ayarlama">S3 Bucket Oluşturma ve İzinleri Ayarlama</h4>
+<p><a href="https://s3.console.aws.amazon.com/s3/home">S3 Console</a> adresinden yeni bir bucket
+oluşturalım. <strong><em>Web sitesi olarak kullanacak ve özel bir alan adı üzerinden yayın yapmayı düşünüyorsanız, <code>foo.example.com</code> isminde bucket açmanız gerekiyor.</em></strong> Bkz.
+<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html">S3 VirtualHosting</a></p>
+<p>IAM servisi ile travisci için bir kullanıcı oluşturalım ve oluşturulan <em>Access Key</em>
+ve <em>Access Secret</em> değerlerini kaydedelim. Kaydetmediğiniz taktirde her ihtiyacınız olduğunda yeni bir <em>Security Credential</em> oluşturmanız gerekecek.</p>
+<p>Bucket ve kullanıcımızı oluşturduk. TravisCI üzerinden S3&rsquo;e dosyalarımızı
+yükleyecek bu kullanıcımıza gerekli izinleri vermek için</p>
+<p>Add Permission &gt; Attach existing policies directly &gt; Create Policy &gt; JSON</p>
+<p>yolunu takip ederek</p>
+<div class="">
+<details class="ba mv2 pa2 b--light-gray">
+<summary class="fira mv1 dim fw7">AWS S3 Website Policy</summary>
+<span><a download="aws-s3-static-web-site-policy.json" class="link black bg-animate hover-bg-light-yellow pv3 ph3" href="./src/aws-s3-static-web-site-policy.json"><i class="icon icon-download"> </i> download</a></span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;Version&#34;</span><span class="p">:</span> <span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;Statement&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;Sid&#34;</span><span class="p">:</span> <span class="s2">&#34;VisualEditor0&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&#34;s3:PutObject&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;s3:GetObjectAcl&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;s3:GetObject&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;s3:AbortMultipartUpload&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;s3:DeleteObject&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;s3:PutObjectAcl&#34;</span>
+            <span class="p">],</span>
+            <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&#34;arn:aws:s3:::foo.example.com/*&#34;</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+</details>
+</div>
+<p>gerekli izinleri veriyoruz.</p>
+<h3 id="deploy--run">Deploy &amp; Run</h3>
+<p>Hugo web sitemizi çalışır hale getirdik, S3 bucket oluşturup izinleri ayarladık.
+TravisCI ile Hugo web sitemizi derleyip, S3 üzerine yayınlayabiliriz.</p>
+<p>Öncelikle reponun ana dizinine <code>.travis.yml</code> adında bir dosya eklememiz gerekiyor.</p>
+<div class="">
+<details class="ba mv2 pa2 b--light-gray">
+<summary class="fira mv1 dim fw7">TravisCI Config</summary>
+<span><a download=".travis.yml" class="link black bg-animate hover-bg-light-yellow pv3 ph3" href="./src/travis.yml"><i class="icon icon-download"> </i> download</a></span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">sudo</span><span class="p">:</span><span class="w"> </span><span class="l">required</span><span class="w">
+</span><span class="w"></span><span class="nt">dist</span><span class="p">:</span><span class="w"> </span><span class="l">trusty</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">before_install</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">wget https://github.com/gohugoio/hugo/releases/download/v0.37.1/hugo_0.37.1_Linux-64bit.deb &amp;&amp; sudo dpkg -i hugo_0.37.1_Linux-64bit.deb</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">script</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">hugo --theme=paperback</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l">s3</span><span class="w">
+</span><span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l">master</span><span class="w">
+</span><span class="w">    </span><span class="nt">skip_cleanup</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">    </span><span class="nt">access_key_id</span><span class="p">:</span><span class="w"> </span><span class="l">$S3_KEY</span><span class="w">
+</span><span class="w">    </span><span class="nt">secret_access_key</span><span class="p">:</span><span class="w"> </span><span class="l">$S3_SECRET</span><span class="w">
+</span><span class="w">    </span><span class="nt">bucket</span><span class="p">:</span><span class="w"> </span><span class="l">$S3_BUCKET</span><span class="w">
+</span><span class="w">    </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l">$S3_REGION</span><span class="w">
+</span><span class="w">    </span><span class="nt">acl</span><span class="p">:</span><span class="w"> </span><span class="l">public-read</span><span class="w">
+</span><span class="w">    </span><span class="nt">local_dir</span><span class="p">:</span><span class="w"> </span><span class="l">public</span></code></pre></div>
+</details>
+</div>
+<p>Yirmi satırdan az bir konfigürasyon dosyası ile sitemizi yayınlayabiliyoruz.</p>
+<p>İlk beş satırda hugonun kurulumunu yapıyoruz.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">sudo</span><span class="p">:</span><span class="w"> </span><span class="l">required</span><span class="w">
+</span><span class="w"></span><span class="nt">dist</span><span class="p">:</span><span class="w"> </span><span class="l">trusty</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">before_install</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">wget https://github.com/gohugoio/hugo/releases/download/v0.37.1/hugo_0.37.1_Linux-64bit.deb &amp;&amp; sudo dpkg -i hugo_0.37.1_Linux-64bit.deb</span><span class="w">
+</span><span class="w">
+</span></code></pre></div><p>Hugonun <code>public</code> dizini altına <code>paperback</code> dizini altına web sitemizi oluşturmasını
+sağlıyoruz. Temayı buradan vermek zorunda değilsiniz. <code>config.toml</code> dosyanızda
+<code>theme = &quot;paperback&quot;</code> ile temayı tanımlayıp <code>hugo</code> komutunu parametresiz çalıştırmanız
+yeterli.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">script</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">hugo --theme=paperback</span><span class="w">
+</span></code></pre></div><p>Bu satırları tek tek açıklayalım.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l">s3</span><span class="w">
+</span><span class="w">    </span><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l">master</span><span class="w">
+</span><span class="w">    </span><span class="nt">skip_cleanup</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">    </span><span class="nt">access_key_id</span><span class="p">:</span><span class="w"> </span><span class="l">$S3_KEY</span><span class="w">
+</span><span class="w">    </span><span class="nt">secret_access_key</span><span class="p">:</span><span class="w"> </span><span class="l">$S3_SECRET</span><span class="w">
+</span><span class="w">    </span><span class="nt">bucket</span><span class="p">:</span><span class="w"> </span><span class="l">$S3_BUCKET</span><span class="w">
+</span><span class="w">    </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l">$S3_REGION</span><span class="w">
+</span><span class="w">    </span><span class="nt">acl</span><span class="p">:</span><span class="w"> </span><span class="l">public-read</span><span class="w">
+</span><span class="w">    </span><span class="nt">local_dir</span><span class="p">:</span><span class="w"> </span><span class="l">public</span><span class="w">
+</span></code></pre></div><p>satır 12, sadece master branch için deployement yapılacağını bildiriyor.
+Başka ifadeyle <code>develop</code> üzerinden derleme tetiği verdiğinizde bu kısım
+dikkate alınmayacaktır.</p>
+<p>satır 14-17, başlarında <em>$</em> olan ifadeler, bu ifadelerin TravisCI üzerinden
+tanımlanan <em>Environment Variable</em> olduğunu bildiriyor.</p>
+<p>satır 18, yüklenecek yeni dosyaların herkes tarafından görülebilmesi için S3
+üzerine yüklenen dosyaların izinleri <em>anonim</em> olarak ayarlanıyor.</p>
+<p>satır 19, oluşturulan dosyaların hangi klasörde olduğunu ve deployement&rsquo;ın bu
+klasörden yapılmasını gerektiğini bildiriyor.</p>
+
         </div>
       </section>
 
-      <section class="max-w-4xl mx-auto">
-        <!-- projects -->
-        <h2 class="section-title roboto-slab font-medium flex justify-between align-bottom text-3xl border-b-4 text-gray-700 border-gray-700 py-2 my-2">
-          projects
-          <a class="section-button font-mono font-extralight rounded-lg bg-gray-100 hover:bg-gray-200 leading-4 text-lg py-3 px-2" href="#">all</a>
-        </h2>
-        <div class="projects">
-          <div class="project hover:bg-gray-100 px-3 py-2">
-            <a href="#" target="_blank" rel="noreferrer">
-              <h3 class="roboto-slab font-medium text-xl text-gray-700">TakeNote</h3>
-              <div class="description text-lg">A free, open source notes app for the web.</div>
-            </a>
-          </div>
-          <div class="project hover:bg-gray-100 px-3 py-2">
-            <a href="https://taniarascia.github.io/chip8/" target="_blank" rel="noreferrer">
-              <h3 class="roboto-slab font-medium text-xl text-gray-700">Chip8.js</h3>
-              <div class="description text-lg">A Chip-8 emulator written in JavaScript.</div>
-            </a>
-          </div>
-          <div class="project hover:bg-gray-100 px-3 py-2">
-            <a href="https://taniarascia.github.io/new-moon/" target="_blank" rel="noreferrer">
-              <h3 class="roboto-slab font-medium text-xl text-gray-700">New Moon</h3>
-              <div class="description text-lg">The optimized dark theme for web development.</div>
-            </a>
-          </div>
-          <div class="project hover:bg-gray-100 px-3 py-2">
-            <a href="https://github.com/taniarascia/mvc/" target="_blank" rel="noreferrer">
-              <h3 class="roboto-slab font-medium text-xl text-gray-700">MVC.js</h3>
-              <div class="description text-lg">A simple Todo MVC application in JavaScript.</div>
-            </a>
-          </div>
-          <div class="project hover:bg-gray-100 px-3 py-2">
-            <a href="https://laconia.dev" target="_blank" rel="noreferrer">
-              <h3 class="roboto-slab font-medium text-xl text-gray-700">Laconia</h3>
-              <div class="description text-lg">A modern PHP Model View Controller framework.</div>
-            </a>
-          </div>
+      <section class="prose prose-lg max-w-4xl mx-auto px-3">
+
+        
+
+        <div class="resources bt b--black-20 mt3">
+
+            <h3 id="ref:resources">Resources</h2>
+            
+            <ul class="list code lh-comfort mt0">
+              
+              
+              <li class="">
+                    <a class="link black bg-animate hover-bg-light-yellow" href="/post/2018/03/statik-bir-hugo-web-sitesini-aws-s3-uzerine-travisci-ile-yayinlamak/res/2018-03-24-deploy-a-static-hugo-web-site-to-aws-s3-with-travisci.ascii ">
+                      <i class="icon icon-file-archive"> </i>
+                      res/2018-03-24-deploy-a-static-hugo-web-site-to-aws-s3-with-travisci.ascii</a>
+              </li>
+              
+              <li class="">
+                    <a class="link black bg-animate hover-bg-light-yellow" href="/post/2018/03/statik-bir-hugo-web-sitesini-aws-s3-uzerine-travisci-ile-yayinlamak/res/2018-03-24-deploy-a-static-hugo-web-site-to-aws-s3-with-travisci.epub ">
+                      <i class="icon icon-file-archive"> </i>
+                      res/2018-03-24-deploy-a-static-hugo-web-site-to-aws-s3-with-travisci.epub</a>
+              </li>
+              
+              <li class="">
+                    <a class="link black bg-animate hover-bg-light-yellow" href="/post/2018/03/statik-bir-hugo-web-sitesini-aws-s3-uzerine-travisci-ile-yayinlamak/res/2018-03-24-deploy-a-static-hugo-web-site-to-aws-s3-with-travisci.pdf ">
+                      <i class="icon icon-file-archive"> </i>
+                      res/2018-03-24-deploy-a-static-hugo-web-site-to-aws-s3-with-travisci.pdf</a>
+              </li>
+              
+              <li class="">
+                    <a class="link black bg-animate hover-bg-light-yellow" href="/post/2018/03/statik-bir-hugo-web-sitesini-aws-s3-uzerine-travisci-ile-yayinlamak/res/2018-03-24-deploy-a-static-hugo-web-site-to-aws-s3-with-travisci.txt ">
+                      <i class="icon icon-file-archive"> </i>
+                      res/2018-03-24-deploy-a-static-hugo-web-site-to-aws-s3-with-travisci.txt</a>
+              </li>
+              
+
+            </div>
+  
         </div>
+        
+
       </section>
+      
     </main>
+  
+</div>
+  </main>
 
-    <footer class="w-full border-t mx-auto max-w-4xl text-lg py-6 mt-4 mb-8">
-      <div class="container text-center mx-auto">
-        <!-- footer -->
-        <nav class="container footer-links">
-          <!-- footer menu items -->
-          <a href="https://bulten.guneysu.xyz/" target="_blank" rel="noopener noreferrer" class="text-lg px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">newsletter</a>
-          <a href="/index.xml" class="text-lg px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">rss</a>
-          <a href="#" class="text-lg px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">stackoverflow</a>
-          <a href="#" class="text-lg px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">linkedin</a>
-          <a href="#" class="text-lg px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">github</a>
-        </nav>
-      </div>
+  <footer class="w-full border-t mx-auto max-w-4xl py-6 mt-4 mb-8 text-xs md:text-lg">
+    <div class="container text-center mx-auto">
+      
+      <nav class="container footer-links">
+        
+        <a href="https://bulten.guneysu.xyz/" target="_blank" rel="noopener noreferrer" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">newsletter</a>
+        <a href="/index.xml" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">
+          rss
+        </a>
+        <a href="#" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">stackoverflow</a>
+        <a href="#" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">linkedin</a>
+        <a href="#" class="px-4 py-3 text-gray-600 align-middle hover:bg-gray-100 rounded-lg">github</a>
+      </nav>
+    </div>
 
-      <div class="text-center text-xs my-12 font-sans text-gray-400">theme is inspired from <a class="hover:underline py-4" href="https://www.taniarascia.com/">Tania Rascia</a>'s blog</div>
-    </footer>
-  </body>
+    <div class="text-center text-xs my-12 font-sans text-gray-400">theme is inspired from <a class="hover:underline py-4" href="https://www.taniarascia.com/">Tania Rascia</a>'s blog</div>
+  </footer>
+</body>
 </html>
+

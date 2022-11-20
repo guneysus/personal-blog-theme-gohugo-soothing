@@ -15,9 +15,11 @@
     "tailwindcss-cli": "^0.1.2"
   },
   "scripts": {
-    "dev": "TAILWIND_MODE=watch NODE_ENV=development npx postcss src/index.css -o ./static/css/app.css -w",
-    "build:dev": "TAILWIND_MODE=build NODE_ENV=development npx postcss src/index.css -o ./static/css/app.css",
-    "publish": "TAILWIND_MODE=build NODE_ENV=production npx postcss src/index.css -o ./static/css/app.css"
+    "dev": "TAILWIND_MODE=watch NODE_ENV=development npx postcss src/index.css -o /home/ahmed/projects/blog-new-design.git/blog/assets/css/app.css -w",
+    "build:dev": "TAILWIND_MODE=build NODE_ENV=development npx postcss src/index.css -o /home/ahmed/projects/blog-new-design.git/blog/assets/css/app.css",
+    "publish": "TAILWIND_MODE=build NODE_ENV=production npx postcss src/index.css -o /home/ahmed/projects/blog-new-design.git/blog/assets/css/app.css"
   },
-  "dependencies": {}
+  "dependencies": {
+    "postcss-import": "^14.0.2"
+  }
 }

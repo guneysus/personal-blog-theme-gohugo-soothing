@@ -1,0 +1,63 @@
+<!-- TODO -->
+{{ hugo.Generator }}
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="description" content="" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+{{ with.Description }}
+<meta name="description" content="{{ . }}" />
+{{ end }}
+
+
+<meta name="keywords" content="
+{{- if gt (len .Keywords) 0 }}
+    {{- range .Keywords}}{{ . }},{{ end -}}
+{{ else if isset .Params "tags"}}
+    {{- range .Params.tags }}{{ . }},{{ end -}}
+{{ else if isset .Site.Params "tags"}}
+    {{- range .Site.Params.tags }}{{ . }},{{ end -}}
+{{- end -}}
+">
+
+<meta property="article:tag" content="
+{{- if gt (len .Keywords) 0 }}
+    {{- range .Keywords}}{{ . }},{{ end -}}
+{{ else if isset .Params "tags"}}
+    {{- range .Params.tags }}{{ . }},{{ end -}}
+{{ else if isset .Site.Params "tags"}}
+    {{- range .Site.Params.tags }}{{ . }},{{ end -}}
+{{- end -}}
+">
+
+<!-- open graph -->
+<meta property="og:type" content="article" />
+<meta property="og:description" content="{{ .Description }}" />
+<meta property="og:title" content="{{ .Title }}" />
+<meta property="og:site_name" content="{{ .Site.Title }}" />
+<meta property="og:image" content="" /> <!-- TODO -->
+<meta property="og:image:type" content="image/jpeg" /> <!-- TODO -->
+<meta property="og:image:width" content="" /> <!-- TODO -->
+<meta property="og:image:height" content="" /> <!-- TODO -->
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:locale" content="{{ .Site.LanguageCode }}" />
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02"}}" /> 
+<meta property="article:modified_time" content="{{ .Date.Format "2006-01-02"}}" />
+
+<!-- TODO Twitter -->
+{{if .Site.Params.twitter }}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@{{ .Site.Params.twitter }}" />
+<meta name="twitter:creator" content="@{{ .Site.Params.twitter }}" />
+<meta
+  name="twitter:title"
+  content="{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}"
+/>
+<meta name="twitter:description" 
+    content="{{ .Description | default .Summary }}|{{ .Site.Params.Description }}"
+/>
+<meta name="twitter:image:src" content="" /> <!-- TODO -->
+<meta name="twitter:domain" content="{{ .Permalink }}" />
+{{ end }}

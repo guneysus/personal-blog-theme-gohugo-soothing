@@ -28,7 +28,7 @@
 
               "
           aria-label="Go to {{ $tag}} tag"
-          href="{{ "tags/" | relLangURL }}{{ . | urlize }}"><i class="icon icon-hash"></i>{{ $tag }}</a>
+          href="{{ "tags/" | relURL }}{{ . | urlize }}"><i class="icon icon-hash"></i>{{ $tag }}</a>
           {{ end }}</span>
         {{ end }}  
       </div>  
@@ -46,24 +46,14 @@
 {{ define "main" }}
     <!-- MAIN _default/single.html -->
     <main class="w-full">
-      
-      <section class="prose prose-lg max-w-4xl mx-auto px-3 mt-12">
-        <div class="article-content f4 f6-m lh-wide">
-          <aside class="toc mt2">
-            <div class="toc-container br2 ba b--gray-100">
-              <h2 class="toc-title black ph3 ma0">İçindekiler</h2>
-              <div class="toc show red">{{- .TableOfContents -}}</div>
-            </div>           
-          </aside>
-        </div>
-
-      </section>
-
+    
       <section class="prose prose-lg max-w-4xl mx-auto px-3 mt-12">
         <div class="content">
           {{ .Content }}
         </div>
+
       </section>
+
 
       <section class="prose prose-lg max-w-4xl mx-auto px-3">
 
@@ -83,12 +73,14 @@
               </li>
               {{ end }}{{ end }}
 
+                 
             </div>
   
         </div>
         {{ end }}
 
       </section>
+
       
     </main>
   <!-- MAIN _default/single.html -->
